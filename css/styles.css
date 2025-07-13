@@ -1,0 +1,370 @@
+/* CSS Variables for Cyberpunk Theme */
+:root {
+    --neon-blue: #00ff15;
+    --neon-pink: #00ff7b;
+    --dark-bg: #0d0d0d;
+    --text-light: #e0e0e0;
+    --glitch-shadow: rgba(0, 240, 255, 0.3);
+    --gradient: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navbar .nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--neon-blue);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('https://source.unsplash.com/random/1920x1080?cyberpunk') no-repeat center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    animation: glitch 2s infinite;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-light);
+}
+
+.cta-button {
+    padding: 0.8rem 2rem;
+    background: var(--gradient);
+    color: var(--dark-bg);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px var(--glitch-shadow);
+}
+
+/* Glitch Animation */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* About Section */
+.about {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: var(--dark-bg);
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-blue);
+}
+
+.about p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Contact Form (for contact.html) */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    color: var(--text-light);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.contact-form button {
+    align-self: flex-start;
+}
+
+/* Footer */
+.footer {
+    padding: 2rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 1px solid var(--neon-blue);
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .navbar .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Particle Background */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+/* Add to styles.css */
+
+/* Join Section */
+.join {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: var(--dark-bg);
+}
+
+.join h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-blue);
+}
+
+.join-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.join-content h3 {
+    font-size: 1.8rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--neon-pink);
+}
+
+.join-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.join-content ol {
+    text-align: left;
+    padding-left: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.join-content a.discord-link,
+.join-content a.youtube-link {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.join-content a.discord-link:hover,
+.join-content a.youtube-link:hover {
+    color: var(--neon-pink);
+}
+
+/* Active Nav Link */
+.nav-links a.active {
+    color: var(--neon-pink);
+    font-weight: bold;
+}
+/* Add to styles.css (assumes .active and .discord-link are already added from join.html) */
+
+/* Contact Section */
+.contact {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: var(--dark-bg);
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-blue);
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.contact-content a.email-link {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-content a.email-link:hover {
+    color: var(--neon-pink);
+}
+/* Add to styles.css */
+
+/* Investment Strategy Section */
+.in \* {
+    padding: 5rem 2rem;
+    text-align: center;
+    background: var(--dark-bg);
+}
+
+.investment-strategy h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-blue);
+}
+
+.investment-strategy-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.investment-strategy-content h3 {
+    font-size: 1.8rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--neon-pink);
+}
+
+.investment-strategy-content p,
+.investment-strategy-content ul {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.investment-strategy-content ul {
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.investment-strategy-content .cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+/* Ensure .active, .discord-link, .email-link are included (from previous updates) */
+.nav-links a.active {
+    color: var(--neon-pink);
+    font-weight: bold;
+}
+
+.contact-content a.email-link,
+.contact-content a.discord-link {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-content a.email-link:hover,
+.contact-content a.discord-link:hover {
+    color: var(--neon-pink);
+}

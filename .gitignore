@@ -1,0 +1,17 @@
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS and temporary files
+.DS_Store
+Thumbs.db
+*.log
+
+# Ignore node_modules (if you add dependencies later)
+node_modules/
+
+# Ignore sensitive configuration files
+.env
+config.json
