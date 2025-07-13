@@ -179,6 +179,35 @@ body {
     color: var(--text-light);
 }
 
+.youtube {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: var(--dark-bg);
+}
+
+.youtube h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-blue);
+}
+
+.youtube p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.youtube .youtube-link {
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.youtube .youtube-link:hover {
+    color: var(--neon-pink);
+}
+
 .about, .join, .contact, .investment-strategy {
     padding: 5rem 2rem;
     text-align: center;
