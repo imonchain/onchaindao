@@ -1,28 +1,45 @@
-// Initialize Particles.js for the hero section (only on index.html)
-if (document.getElementById('particles-js')) {
-    particlesJS('particles-js', {
-        particles: {
-            number: { value: 80, density: { enable: true, value_area: 800 } },
-            color: { value: ['#00f0ff', '#ff00e6'] },
-            shape: { type: 'circle' },
-            opacity: { value: 0.5, random: true },
-            size: { value: 3, random: true },
-            line_linked: { enable: true, distance: 150, color: '#00f0ff', opacity: 0.4, width: 1 },
-            move: { enable: true, speed: 2, direction: 'none', random: true }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
-            modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-        },
-        retina_detect: true
-    });
-}
-
-// Navbar Scroll Effect
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+    try {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+    } catch (error) {
+        console.error('Navbar scroll effect failed:', error);
+    }
+});
+
+document.querySelector('.nav-toggle')?.addEventListener('click', () => {
+    try {
+        document.querySelector('.nav-links')?.classList.toggle('active');
+    } catch (error) {
+        console.error('Hamburger menu toggle failed:', error);
+    }
+});
+
+document.querySelectorAll('.counter').forEach(counter => {
+    try {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const prefix = counter.getAttribute('data-prefix') || '';
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const valueElement = counter.querySelector('.counter-value');
+        let value = 0;
+        const increment = target / 100;
+        const updateCounter = () => {
+            if (value < target) {
+                value += increment;
+                valueElement.textContent = prefix + Math.min(value, target).toFixed(suffix === '%' ? 1 : 0) + suffix;
+                requestAnimationFrame(updateCounter);
+            } else {
+                valueElement.textContent = prefix + target.toFixed(suffix === '%' ? 1 : 0) + suffix;
+            }
+        };
+        updateCounter();
+    } catch (error) {
+        console.error('Counter animation failed:', error);
+    }
+});

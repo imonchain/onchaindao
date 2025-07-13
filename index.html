@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="OnChainDAO.Club - A decentralized autonomous organization for collective investing.">
+    <meta property="og:title" content="OnChainDAO.Club - Decentralized Investing">
+    <meta property="og:description" content="The most entertaining investment pool in the world.">
+    <meta property="og:image" content="https://yourdomain.com/images/og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
     <title>OnChainDAO.Club - Decentralized Investing</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- CSS -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="logo">OnChainDAO.Club</div>
+        <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
             <a href="join.html">Join</a>
-            <a href="investment-strategy.html">Investment Strategy</a>
+            <a href="strategy.html">Strategy</a>
             <a href="contact.html">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div id="particles-js"></div>
         <div class="hero-content">
@@ -33,19 +35,61 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <section class="counters">
+        <h2>Our Impact</h2>
+        <div class="counter-container">
+            <div class="counter" data-target="1" data-prefix="$" data-suffix="k">
+                <span class="counter-value">0</span>
+                <p>Assets Under Management</p>
+            </div>
+            <div class="counter" data-target="15" data-suffix="%">
+                <span class="counter-value">0</span>
+                <p>Annual Performance</p>
+            </div>
+            <div class="counter" data-target="25">
+                <span class="counter-value">0</span>
+                <p>Active Members</p>
+            </div>
+        </div>
+        <p class="fund-established">Fund Established: July 13, 2025</p>
+    </section>
+
     <section class="about" id="about">
         <h2>About Us</h2>
         <p>OnChainDAO is an investment club focused on opportunities within the on-chain ecosystems on Solana, Ethereum, AVAX, Base, Sui and many more.</p>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p>© 2025 OnChainDAO.Club. All rights reserved.</p>
+        <div class="footer-content">
+            <p>© 2025 OnChainDAO.Club. All rights reserved.</p>
+            <a href="https://x.com/HedgeFundDAO" target="_blank" class="twitter-link">Follow us on X</a>
+        </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        try {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: ['#00f0ff', '#ff00e6'] },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: '#00f0ff', opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: 'none', random: true }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                    modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+                },
+                retina_detect: true
+            });
+        } catch (error) {
+            console.error('Particles.js failed to load:', error);
+        }
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>
