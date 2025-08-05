@@ -7,7 +7,7 @@
     --gradient: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
 }
 
-* {
+body, body * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -63,7 +63,7 @@ body {
     transition: color 0.3s ease;
 }
 
-.navbar .nav-links a:hover, .nav-links a.active {
+.navbar .nav-links a:hover, .navbar .nav-links a.active {
     color: var(--neon-pink);
     font-weight: bold;
 }
@@ -75,7 +75,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: url('https://source.unsplash.com/random/1920x1080?cyberpunk') no-repeat center/cover;
+    background: url('../images/hero-bg.jpg') no-repeat center/cover;
     position: relative;
     overflow: hidden;
 }
@@ -103,7 +103,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 1rem;
-    animation: glitch 2s infinite;
+    animation: glitch 5s ease-in-out;
 }
 
 .hero p {
@@ -123,7 +123,7 @@ body {
 }
 
 .cta-button:hover {
-    transform: translateY(-3px);
+    transform: scale(1.05);
     box-shadow: 0 0 20px var(--glitch-shadow);
 }
 
@@ -164,7 +164,7 @@ body {
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: glitch 2s infinite;
+    animation: glitch 5s ease-in-out;
 }
 
 .counter p {
@@ -233,6 +233,43 @@ body {
     color: var(--neon-pink);
 }
 
+.investment-strategy-content h4 {
+    font-size: 1.2rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+}
+
+.strategy-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--neon-blue);
+    padding: 1.5rem;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.strategy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--glitch-shadow);
+}
+
+.section-divider {
+    width: 100%;
+    max-width: 600px;
+    height: 1px;
+    background: var(--gradient);
+    margin: 2rem auto;
+}
+
 .join-content ol, .investment-strategy-content ul {
     text-align: left;
     padding-left: 2rem;
@@ -241,19 +278,34 @@ body {
     margin-bottom: 1rem;
 }
 
-.join-content a.discord-link, .join-content a.youtube-link, .contact-content a.email-link, .contact-content a.discord-link {
+.join-content a.discord-link, .join-content a.youtube-link, .contact-content a.email-link, .contact-content a.discord-link, .contact-content a.youtube-link, .contact-content a.twitter-link {
     color: var(--neon-blue);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.join-content a.discord-link:hover, .join-content a.youtube-link:hover, .contact-content a.email-link:hover, .contact-content a.discord-link:hover {
+.join-content a.discord-link:hover, .join-content a.youtube-link:hover, .contact-content a.email-link:hover, .contact-content a.discord-link:hover, .contact-content a.youtube-link:hover, .contact-content a.twitter-link:hover {
     color: var(--neon-pink);
 }
 
 .investment-strategy-content .cta-button {
     display: inline-block;
     margin-top: 1rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.alert {
+    background: rgba(255, 0, 0, 0.2);
+    padding: 1rem;
+    border: 1px solid var(--neon-pink);
+    margin: 1rem auto;
+    max-width: 600px;
 }
 
 .contact-form {
@@ -327,6 +379,12 @@ body {
     .hero p {
         font-size: 1rem;
     }
+    .counters h2 {
+        font-size: 2rem;
+    }
+    .counter-value {
+        font-size: 2rem;
+    }
     .navbar .nav-links {
         display: none;
         flex-direction: column;
@@ -346,11 +404,11 @@ body {
         margin: 1rem;
         font-size: 0.9rem;
     }
-    .counter-value {
-        font-size: 2rem;
-    }
     .footer-content {
         flex-direction: column;
         gap: 1rem;
+    }
+    .strategy-card {
+        padding: 1rem;
     }
 }

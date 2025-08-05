@@ -1,45 +1,71 @@
+// Load shared navigation
+fetch('nav.html')
+    .then(response => response.text())
+    .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const navContent = doc.querySelector('nav.navbar').outerHTML;
+        document.querySelectorAll('#nav-placeholder').forEach(placeholder => {
+            placeholder.outerHTML = navContent;
+            // Set active link based on current page
+            const page = location.pathname.split('/').pop() || 'index.html';
+            const linkClass = `nav-${page.replace('.html', '')}`;
+            document.querySelector(`.${linkClass}`)?.classList.add('active');
+        });
+    })
+    .catch(error => console.error('Failed to load navigation:', error));
+
+// Scroll effect for navbar
+let isScrolling;
 window.addEventListener('scroll', () => {
-    try {
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
         const navbar = document.querySelector('.navbar');
         if (navbar) {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         }
-    } catch (error) {
-        console.error('Navbar scroll effect failed:', error);
-    }
+    }, 100);
 });
 
-document.querySelector('.nav-toggle')?.addEventListener('click', () => {
-    try {
-        document.querySelector('.nav-links')?.classList.toggle('active');
-    } catch (error) {
-        console.error('Hamburger menu toggle failed:', error);
-    }
+// Hamburger menu toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+navToggle?.addEventListener('click', () => {
+    const isActive = navLinks?.classList.toggle('active');
+    navToggle.setAttribute('aria-expanded', isActive);
 });
 
-document.querySelectorAll('.counter').forEach(counter => {
-    try {
-        const target = parseFloat(counter.getAttribute('data-target'));
-        const prefix = counter.getAttribute('data-prefix') || '';
-        const suffix = counter.getAttribute('data-suffix') || '';
-        const valueElement = counter.querySelector('.counter-value');
-        let value = 0;
-        const increment = target / 100;
-        const updateCounter = () => {
+// Counter animation
+const counters = document.querySelectorAll('.counter');
+if (counters.length) {
+    const animateCounters = () => {
+        let allDone = true;
+        counters.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            const prefix = counter.getAttribute('data-prefix') || '';
+            const suffix = counter.getAttribute('data-suffix') || '';
+            const decimals = parseInt(counter.getAttribute('data-decimals') || (suffix === '%' ? 1 : 0));
+            const valueElement = counter.querySelector('.counter-value');
+            let value = parseFloat(valueElement.dataset.value || 0);
+            const increment = target / 100;
             if (value < target) {
-                value += increment;
-                valueElement.textContent = prefix + Math.min(value, target).toFixed(suffix === '%' ? 1 : 0) + suffix;
-                requestAnimationFrame(updateCounter);
-            } else {
-                valueElement.textContent = prefix + target.toFixed(suffix === '%' ? 1 : 0) + suffix;
+                value = Math.min(value + increment, target);
+                valueElement.dataset.value = value;
+                valueElement.textContent = prefix + value.toFixed(decimals) + suffix;
+                allDone = false;
             }
-        };
-        updateCounter();
-    } catch (error) {
-        console.error('Counter animation failed:', error);
+        });
+        if (!allDone) {
+            requestAnimationFrame(animateCounters);
+        }
+    };
+    requestAnimationFrame(animateCounters);
+}
+
+// Smooth scroll to section
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
     }
-});
+}
