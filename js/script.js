@@ -7,9 +7,9 @@ fetch('nav.html')
         const navContent = doc.querySelector('nav.navbar').outerHTML;
         document.querySelectorAll('#nav-placeholder').forEach(placeholder => {
             placeholder.outerHTML = navContent;
-            // Set active link based on current page (e.g., index.html -> nav-home, funds.html -> nav-funds)
-            const page = location.pathname.split('/').pop() || 'index.html';
-            const linkClass = `nav-${page.replace('.html', '')}`;
+            // Set active link based on current page (e.g., / or index.html -> nav-home, /about -> nav-about)
+            const page = location.pathname.split('/').pop();
+            const linkClass = `nav-${page === '' || page === 'index.html' ? 'home' : page}`;
             document.querySelector(`.${linkClass}`)?.classList.add('active');
 
             // Hamburger menu toggle
