@@ -7,10 +7,26 @@ fetch('nav.html')
         const navContent = doc.querySelector('nav.navbar').outerHTML;
         document.querySelectorAll('#nav-placeholder').forEach(placeholder => {
             placeholder.outerHTML = navContent;
-            // Set active link based on current page
+            // Set active link based on current page (e.g., index.html -> nav-home, funds.html -> nav-funds)
             const page = location.pathname.split('/').pop() || 'index.html';
             const linkClass = `nav-${page.replace('.html', '')}`;
             document.querySelector(`.${linkClass}`)?.classList.add('active');
+
+            // Hamburger menu toggle
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            if (navToggle && navLinks) {
+                console.log('Hamburger menu elements found:', { navToggle, navLinks });
+                navToggle.addEventListener('click', handleToggle);
+                navToggle.addEventListener('touchstart', handleToggle);
+                function handleToggle() {
+                    console.log('Hamburger menu toggled');
+                    const isActive = navLinks.classList.toggle('active');
+                    navToggle.setAttribute('aria-expanded', isActive);
+                }
+            } else {
+                console.error('Hamburger menu elements not found:', { navToggle, navLinks });
+            }
         });
     })
     .catch(error => console.error('Failed to load navigation:', error));
@@ -25,14 +41,6 @@ window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         }
     }, 100);
-});
-
-// Hamburger menu toggle
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-navToggle?.addEventListener('click', () => {
-    const isActive = navLinks?.classList.toggle('active');
-    navToggle.setAttribute('aria-expanded', isActive);
 });
 
 // Counter animation

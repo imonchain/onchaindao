@@ -83,6 +83,7 @@ a:hover {
 @media (max-width: 768px) {
     .nav-toggle {
         display: block;
+        padding: 1rem; /* Increased for better touch target */
     }
     .nav-links {
         display: none;
@@ -101,7 +102,7 @@ a:hover {
         animation: slideDown 0.3s ease-out;
     }
     .nav-links a {
-        padding: 0.8rem 0;
+        padding: 1rem; /* Increased for better touch target */
     }
 }
 
@@ -114,6 +115,11 @@ a:hover {
 @keyframes slideDown {
     from { transform: translateY(-100%); }
     to { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Hero section styles */
@@ -207,15 +213,38 @@ a:hover {
     transform: translateY(-2px);
 }
 
+/* Mobile-specific hero and button styles */
+@media (max-width: 768px) {
+    .hero {
+        height: 70vh; /* Reduced height to fit content */
+    }
+    .hero-content {
+        padding: 1rem; /* Reduced padding for mobile */
+    }
+    .hero-content h1 {
+        font-size: 2rem; /* Scaled down for mobile */
+    }
+    .hero-content p {
+        font-size: 1rem; /* Scaled down for mobile */
+    }
+    .cta-button {
+        padding: 0.8rem 1.5rem; /* Match youtube-link for consistency */
+        margin: 1rem auto; /* Center button */
+        display: block; /* Ensure full-width centering */
+    }
+    .youtube-link {
+        padding: 0.8rem 1.5rem; /* Consistent with cta-button */
+        margin: 1rem auto; /* Center button */
+        display: block; /* Ensure full-width centering */
+        font-size: 1rem; /* Match other buttons */
+        border-radius: 10px; /* Match cta-button */
+    }
+}
+
 /* Animations */
 @keyframes borderPulse {
     from { border-color: #00FF00; }
     to { border-color: #00CC00; }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 @keyframes typeWriter {
@@ -344,6 +373,114 @@ a:hover {
     animation: fadeIn 1s ease-out 0.5s backwards;
 }
 
+/* Contact page specific styles */
+.content-block {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.cta-container {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.section-divider {
+    border-top: 1px dashed var(--neon-green);
+    width: 100%;
+    margin: 2rem auto;
+    opacity: 0.5;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.social-button {
+    padding: 0.8rem 1.5rem;
+    background: var(--black-bg);
+    border: var(--terminal-border);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background: rgba(0, 255, 0, 0.2);
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
+    z-index: 0;
+}
+
+.social-button:hover::after {
+    width: 100%;
+}
+
+.social-button:hover {
+    text-shadow: 0 0 10px #00FF00;
+    transform: translateY(-2px);
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+    animation-fill-mode: backwards;
+}
+
+.fade-in:nth-child(1) { animation-delay: 0.2s; }
+.fade-in:nth-child(2) { animation-delay: 0.4s; }
+.fade-in:nth-child(3) { animation-delay: 0.6s; }
+
+/* Funds page specific styles */
+.funds-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.funds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.fund-box {
+    background: rgba(0, 255, 0, 0.05);
+    border: var(--terminal-border);
+    border-radius: 5px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fund-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.fund-box h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.fund-box p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
 /* Footer styles */
 .footer {
     padding: 2rem;
@@ -356,7 +493,7 @@ a:hover {
     font-size: 1rem;
     color: #00FF00;
     opacity: 0.5;
-    margin-bottom: 1rem; /* Added spacing below text */
+    margin-bottom: 1rem;
 }
 
 .twitter-link {

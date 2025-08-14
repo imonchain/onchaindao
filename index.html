@@ -84,9 +84,12 @@
     <script>
         if (document.querySelector('#particles-js')) {
             try {
+                // Adjust particle density based on screen width
+                const isMobile = window.matchMedia('(max-width: 768px)').matches;
+                const particleCount = isMobile ? 40 : 80;
                 particlesJS('particles-js', {
                     particles: {
-                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        number: { value: particleCount, density: { enable: true, value_area: 800 } },
                         color: { value: ['#00ff15', '#ff00e6'] },
                         shape: { type: 'circle' },
                         opacity: { value: 0.5, random: true },
