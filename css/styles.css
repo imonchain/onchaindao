@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
     background: #000;
     color: #00FF00;
     line-height: 1.5;
@@ -56,10 +56,11 @@ a:hover {
 .navbar .logo,
 .navbar .nav-toggle,
 .navbar .nav-links a {
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .nav-toggle {
@@ -67,13 +68,14 @@ a:hover {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 1rem;
+    color: var(--neon-green);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .nav-links a.active {
@@ -83,7 +85,7 @@ a:hover {
 @media (max-width: 768px) {
     .nav-toggle {
         display: block;
-        padding: 1rem; /* Increased for better touch target */
+        padding: 1rem;
     }
     .nav-links {
         display: none;
@@ -96,13 +98,14 @@ a:hover {
         padding: 1rem;
         border-left: var(--terminal-border);
         border-right: var(--terminal-border);
+        z-index: 999; /* Ensure navbar is above other content */
     }
     .nav-links.active {
         display: flex;
         animation: slideDown 0.3s ease-out;
     }
     .nav-links a {
-        padding: 1rem; /* Increased for better touch target */
+        padding: 1rem;
     }
 }
 
@@ -122,6 +125,20 @@ a:hover {
     to { opacity: 1; }
 }
 
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+    100% { transform: translate(0); }
+}
+
 /* Hero section styles */
 .hero {
     position: relative;
@@ -133,7 +150,8 @@ a:hover {
     background: var(--black-bg);
     overflow: hidden;
     border: var(--terminal-border);
-    animation: borderPulse 3s infinite alternate;
+    animation: pulseBorder 3s infinite alternate;
+    z-index: 1; /* Ensure hero is below navbar */
 }
 
 .hero::before {
@@ -145,19 +163,19 @@ a:hover {
     height: 100%;
     background: url('https://www.transparenttextures.com/patterns/noisy.png');
     opacity: 0.1;
-    z-index: 1;
+    z-index: 2;
 }
 
 #particles-js {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     padding: 2rem;
     animation: fadeIn 1s ease-out;
 }
@@ -216,28 +234,28 @@ a:hover {
 /* Mobile-specific hero and button styles */
 @media (max-width: 768px) {
     .hero {
-        height: 70vh; /* Reduced height to fit content */
+        height: 70vh;
     }
     .hero-content {
-        padding: 1rem; /* Reduced padding for mobile */
+        padding: 1rem;
     }
     .hero-content h1 {
-        font-size: 2rem; /* Scaled down for mobile */
+        font-size: 2rem;
     }
     .hero-content p {
-        font-size: 1rem; /* Scaled down for mobile */
+        font-size: 1rem;
     }
     .cta-button {
-        padding: 0.8rem 1.5rem; /* Match youtube-link for consistency */
-        margin: 1rem auto; /* Center button */
-        display: block; /* Ensure full-width centering */
+        padding: 0.8rem 1.5rem;
+        margin: 1rem auto;
+        display: block;
     }
     .youtube-link {
-        padding: 0.8rem 1.5rem; /* Consistent with cta-button */
-        margin: 1rem auto; /* Center button */
-        display: block; /* Ensure full-width centering */
-        font-size: 1rem; /* Match other buttons */
-        border-radius: 10px; /* Match cta-button */
+        padding: 0.8rem 1.5rem;
+        margin: 1rem auto;
+        display: block;
+        font-size: 1rem;
+        border-radius: 10px;
     }
 }
 
@@ -351,39 +369,67 @@ a:hover {
     transform: translateY(-2px);
 }
 
-/* About section styles */
+/* About, Strategy, and Contact section styles */
 .about {
     padding: 4rem 2rem;
     text-align: center;
     background: var(--black-bg);
     border-top: var(--terminal-border);
     border-bottom: var(--terminal-border);
+    z-index: 1; /* Ensure section is below navbar */
 }
 
-.about h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    animation: fadeIn 1s ease-out;
-}
-
-.about p {
-    font-size: 1.2rem;
-    max-width: 800px;
+.terminal-container {
+    max-width: 900px;
     margin: 0 auto;
-    animation: fadeIn 1s ease-out 0.5s backwards;
+    padding: 2rem;
+    background: rgba(0, 255, 0, 0.05);
+    border: var(--terminal-border);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
 }
 
-/* Contact page specific styles */
-.content-block {
-    max-width: 800px;
-    margin: 0 auto 2rem;
-    text-align: center;
+.terminal-header {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    animation: glitch 2s infinite;
 }
 
-.cta-container {
-    margin: 1.5rem 0;
-    display: flex;
-    justify-content: center;
+.terminal-subheader {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+    opacity: 0.9;
+}
+
+.terminal-card {
+    background: rgba(0, 255, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+.terminal-card:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.terminal-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.terminal-card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .section-divider {
@@ -393,21 +439,29 @@ a:hover {
     opacity: 0.5;
 }
 
+.cta-container {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
 .social-links {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-    margin-top: 1rem;
+    margin: 2rem 0;
 }
 
 .social-button {
     padding: 0.8rem 1.5rem;
     background: var(--black-bg);
+    color: #00FF00;
     border: var(--terminal-border);
-    border-radius: 5px;
+    border-radius: 10px;
+    font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -434,14 +488,27 @@ a:hover {
     transform: translateY(-2px);
 }
 
-.fade-in {
-    animation: fadeIn 1s ease-out;
+@media (max-width: 768px) {
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .social-button {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease-out;
     animation-fill-mode: backwards;
 }
 
-.fade-in:nth-child(1) { animation-delay: 0.2s; }
-.fade-in:nth-child(2) { animation-delay: 0.4s; }
-.fade-in:nth-child(3) { animation-delay: 0.6s; }
+.fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+.fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+.fade-in-up:nth-child(3) { animation-delay: 0.6s; }
 
 /* Funds page specific styles */
 .funds-content {
@@ -486,28 +553,11 @@ a:hover {
     padding: 2rem;
     text-align: center;
     background: var(--black-bg);
-    border-top: var(--terminal-border);
 }
 
 .footer-content p {
     font-size: 1rem;
     color: #00FF00;
-    opacity: 0.5;
+    opacity: 0.7;
     margin-bottom: 1rem;
-}
-
-.twitter-link {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--black-bg);
-    color: #00FF00;
-    border: var(--terminal-border);
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.twitter-link:hover {
-    color: #00FF00;
-    text-shadow: 0 0 10px #00FF00;
-    transform: translateY(-2px);
 }
